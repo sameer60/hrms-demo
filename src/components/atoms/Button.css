@@ -1,0 +1,23 @@
+/* src/components/atoms/Button.css */
+
+.button {
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+    height: 40px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.button-approve {
+    background-color: #65558f;
+    color: white;
+    border: none;
+}
+
+.button-reject {
+    background-color: white;
+    color: #65558f;
+    border: 1px solid #79747e;
+}

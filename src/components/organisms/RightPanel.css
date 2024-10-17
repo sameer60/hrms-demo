@@ -1,0 +1,21 @@
+.right-panel{
+    background-color: #f2f4f8;
+    padding-inline: 25px;
+    padding-block: 15px;
+    position: fixed;
+    top: 0;
+    margin-left: 250px;
+    padding: 24px;
+    height: 100vh;
+    overflow-y: auto;
+    width: 86.5%;
+
+}
+.right-panel-heading{
+    color: #21272a;
+    font-size: 40px;
+    font-weight: 600;
+    margin-block: 0;
+    height: 46px;
+    margin-bottom: 24px;
+}

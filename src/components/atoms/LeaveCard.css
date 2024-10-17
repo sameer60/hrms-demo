@@ -1,0 +1,87 @@
+.mini-card{
+    background-color: white;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+.mini-card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mini-card-user-image{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+}
+.mini-card-user-pending-status{
+    background-color: #d9d9d9;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 400;
+    color: #3E3E3E;
+    padding: 2px 8px;
+}
+.mini-card-user-approved-status{
+    background-color: #a6f9bb;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 400;
+    color: #3e3e3e;
+    padding: 2px 8px;
+}
+.mini-card-name-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mini-card-user-name{
+    color: #8E8E93;
+    font-size: 16px;
+    line-height: 17.6px;
+    font-weight: 500;
+    margin: 0;
+}
+.mini-card-user-leaves{
+    color: #8E8E93;
+    font-size: 14px;
+    line-height: 15.4px;
+    font-weight: 400;
+    margin: 0;
+}
+.mini-card-date-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mini-card-date{
+    color: #8E8E93;
+    font-size: 16px;
+    line-height: 17.6px;
+    font-weight: 500;
+    margin: 0;
+}
+.mini-card-number-days{
+    color: #8E8E93;
+    font-size: 14px;
+    line-height: 15.4px;
+    font-weight: 400;
+    margin: 0;
+}
+.mini-card-note-label{
+    color: #aeaeb2;
+    font-size: 16px;
+    margin: 0px 0px 8px 0px;
+}
+.mini-card-note-input{
+    border-radius: 16px;
+    padding: 16px;
+    width: 100%;
+    border: 1px solid #aeaeb2;
+}
