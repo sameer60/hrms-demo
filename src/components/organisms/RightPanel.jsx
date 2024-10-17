@@ -1,40 +1,61 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import Divider from "@mui/material/Divider";
+import React from "react";
+import {
+  Box,
+  Typography,
+  Tab,
+  Tabs,
+  TextField,
+  InputAdornment,
+  Divider,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { FiSearch } from "react-icons/fi";
-import "./RightPanel.css";
-import { Tabs } from "@mui/material";
-import RequestCards from "../organisms/RequestCards/RequestCards";
+import { FiChevronDown } from "react-icons/fi";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+import RequestCards from "./RequestCards/RequestCards";
 
 const tabs = [
   { id: 1, label: "Overview", value: "1" },
   { id: 2, label: "Attendance", value: "2" },
-  { id: 3, label: "Leave Request 2", value: "3" },
+  { id: 3, label: "Leave Requests 2", value: "3" },
   { id: 4, label: "Leave Tracker", value: "4" },
 ];
 
 const tabPanels = [
-  { id: 1, label: "Overview", value: "1" },
-  { id: 2, label: "Attendance", value: "2" },
-  { id: 3, label: <RequestCards />, value: "3" },
-  { id: 4, label: "Leave Tracker", value: "4" },
+  { id: 1, value: "1", label: "Overview Content" },
+  { id: 2, value: "2", label: "Attendance Content" },
+  { id: 3, value: "3", label: <RequestCards /> },
+  { id: 4, value: "4", label: "Leave Tracker Content" },
 ];
 
 const RightPanel = () => {
   const [value, setValue] = React.useState("1");
+  const [selectValue, setSelectValue] = React.useState("");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const handleSelectChange = (event) => {
+    setSelectValue(event.target.value);
+  };
+
   return (
-    <div className="right-panel">
-      <h1 className="right-panel-heading">Team</h1>
+    <Box sx={{ flexGrow: 1, py: 3, px: 7, bgcolor: "#f2f4f8" }}>
+      <Typography
+        variant="h4"
+        gutterBottom
+        sx={{
+          color: "#21272a",
+          fontWeight: "700",
+          fontSize: "42px",
+          lineHeight: "46px",
+          mb: "24px",
+        }}
+      >
+        Team
+      </Typography>
       <TabContext value={value}>
         <Box
           sx={{
@@ -43,68 +64,56 @@ const RightPanel = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginBottom: "24px",
+            mb: "24px",
+            ml: "-10px",
           }}
         >
           <Tabs
             value={value}
             onChange={handleChange}
-            indicatorColor="#001d6c"
-            TabIndicatorProps={{
-              style: {
-                backgroundColor: "#001d6c",
-              },
-            }}
-            aria-label="lab API tabs example"
+            aria-label="Team tabs"
+            sx={{ "& .MuiTab-root": { textTransform: "none", fontSize: 16 } }}
           >
             <TabList>
-              {tabs.map((tab) => {
-                return (
-                  <Tab
-                    key={tab.id}
-                    sx={{
-                      textTransform: "none",
-                      color: "#21272a",
-                      "&.Mui-selected": {
-                        color: "#001d6c",
-                      },
-                      fontSize: "16px",
-                      lineHeight: "16px",
-                      fontFamily: "Roboto",
-                    }}
-                    label={
-                      <span>
-                        {(() => {
-                          const parts = tab.label.split(" ");
-                          const lastPart = parts[parts.length - 1];
-                          if (!isNaN(lastPart)) {
-                            return (
-                              <>
-                                {parts.slice(0, -1).join(" ")}{" "}
-                                <span
-                                  style={{
-                                    backgroundColor: "#697077",
-                                    fontWeight: 400,
-                                    color: "#fff",
-                                    marginLeft: "4px",
-                                    borderRadius: "12px",
-                                    padding: "0.5px 5.5px",
-                                  }}
-                                >
-                                  {lastPart}
-                                </span>
-                              </>
-                            );
-                          } else {
-                            return tab.label;
-                          }
-                        })()}
-                      </span>
-                    }
-                    value={tab.value}
-                  />
-                );
-              })}
+              {tabs.map((tab) => (
+                <Tab
+                  key={tab.id}
+                  label={
+                    <span>
+                      {(() => {
+                        const parts = tab.label.split(" ");
+                        const lastPart = parts[parts.length - 1];
+                        if (!isNaN(lastPart)) {
+                          return (
+                            <>
+                              {parts.slice(0, -1).join(" ")}{" "}
+                              <span
+                                style={{
+                                  backgroundColor: "#697077",
+                                  fontWeight: 400,
+                                  color: "#fff",
+                                  marginLeft: "4px",
+                                  borderRadius: "12px",
+                                  padding: "0.5px 5.5px",
+                                }}
+                              >
+                                {lastPart}
+                              </span>
+                            </>
+                          );
+                        } else {
+                          return tab.label;
+                        }
+                      })()}
+                    </span>
+                  }
+                  value={tab.value}
+                  sx={{
+                    color: "#21272a",
+                    "&.Mui-selected": { color: "#001d6c" },
+                  }}
+                />
+              ))}
             </TabList>
           </Tabs>
           <TextField
@@ -124,51 +133,67 @@ const RightPanel = () => {
             color="#001d6c"
           />
         </Box>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Box
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            ml: "5px",
+            width: "59%",
+            height: "56px",
+          }}
+        >
+          <Typography
+            variant="h6"
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              width: "60%",
-              height: "56px",
+              color: "#21272a",
+              fontWeight: "500",
+              fontSize: "16px",
+              lineHeight: "16px",
             }}
           >
-            <p
-              style={{
-                fontWeight: 500,
+            Request
+          </Typography>
+          <Select
+            id="customSelect"
+            value={selectValue}
+            onChange={handleSelectChange}
+            IconComponent={FiChevronDown}
+            displayEmpty
+            sx={{
+              width: 150,
+              "& .MuiOutlinedInput-notchedOutline": {
+                border: "none", // Removes the border
+              },
+              "& .MuiSelect-icon": {
+                right: "20px",
                 fontSize: 20,
-                marginLeft: "8px",
-                color: "#21272a",
-              }}
-            >
-              Request
-            </p>
-            <form style={{ display: "flex", alignItems: "center" }}>
-              <label htmlFor="customSelect">All Requests</label>
-              <div>
-                <select id="customSelect" style={{ border: 0, width: 30 }}>
-                  <option value=""></option>
-                  <option value="10">Ten</option>
-                  <option value="20">Twenty</option>
-                  <option value="30">Thirty</option>
-                </select>
-              </div>
-            </form>
-          </Box>
-          <Divider />
+                fontWeight: "700",
+                color: "#1C1B1F",
+              },
+            }}
+          >
+            <MenuItem value="">
+              <p>All Requests</p>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
         </Box>
-        <Box sx={{ position: "relative" }}>
-          {tabPanels.map((tabPanel) => {
-            return (
-              <TabPanel value={tabPanel.value} key={tabPanel.id}>
-                {tabPanel.label}
-              </TabPanel>
-            );
-          })}
+
+        <Divider />
+
+        <Box sx={{ position: "relative", mt: 3 }}>
+          {tabPanels.map((tabPanel) => (
+            <TabPanel value={tabPanel.value} key={tabPanel.id} sx={{ p: 0 }}>
+              {tabPanel.label}
+            </TabPanel>
+          ))}
         </Box>
       </TabContext>
-    </div>
+    </Box>
   );
 };
 

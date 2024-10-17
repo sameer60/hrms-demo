@@ -1,5 +1,7 @@
 import LeaveCard from "../../atoms/LeaveCard";
 import RequestCard from "../../atoms/RequestCard";
+import { Box, Typography, Card, CardContent } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import "./index.css";
 
 const requests = [
@@ -37,24 +39,54 @@ const upcomingLeaves = [
 
 const RequestCards = () => {
   return (
-    <div>
-      <div style={{ width: "60%" }}>
-        {requests.map((request) => {
-          return <RequestCard key={request.id} data={request} />;
-        })}
-      </div>
-      <div className="right-side-panel">
-        <div className="right-panel-header">
-          <h4 className="right-panel-heading">Upcoming Leaves</h4>
-          <h4 className="right-panel-heading">{upcomingLeaves.length}</h4>
-        </div>
-        <div className="right-panel-body">
-          {upcomingLeaves.map((item) => {
-            return <LeaveCard key={item.id} data={item} />;
-          })}
-        </div>
-      </div>
-    </div>
+    <Grid
+      container
+      spacing={2}
+      justifyContent="left"
+      gap="24px"
+      alignItems="flex-start"
+    >
+      <Grid item size={{ xs: 12, md: 7 }}>
+        <Box>
+          {requests.map((request) => (
+            <RequestCard key={request.id} data={request} />
+          ))}
+        </Box>
+      </Grid>
+
+      <Grid item size={{ xs: 12, md: 4 }}>
+        <Card
+          elevation={0}
+          sx={{ p: 3, backgroundColor: "#e2e2e2", borderRadius: "24px" }}
+        >
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            mb="24px"
+          >
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: 700, fontSize: "24px", lineHeight: "26.4px" }}
+            >
+              Upcoming Leaves
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: 700, fontSize: "24px", lineHeight: "26.4px" }}
+            >
+              {upcomingLeaves.length}
+            </Typography>
+          </Box>
+
+          <CardContent sx={{ p: 0, pb: 0 }}>
+            {upcomingLeaves.map((item) => (
+              <LeaveCard key={item.id} data={item} />
+            ))}
+          </CardContent>
+        </Card>
+      </Grid>
+    </Grid>
   );
 };
 
